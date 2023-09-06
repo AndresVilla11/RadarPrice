@@ -1,0 +1,42 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/RadarPrice-frontend/dist
+/RadarPrice-frontend/tmp
+/RadarPrice-frontend/out-tsc
+/RadarPrice-frontend/bazel-out
+
+# Node
+/RadarPrice-frontend/node_modules
+/RadarPrice-frontend/npm-debug.log
+/RadarPrice-frontend/yarn-error.log
+
+# IDEs and editors
+/RadarPrice-frontend/.idea/
+/RadarPrice-frontend/.project
+/RadarPrice-frontend/.classpath
+/RadarPrice-frontend/.c9/
+/RadarPrice-frontend/*.launch
+/RadarPrice-frontend/.settings/
+/RadarPrice-frontend/*.sublime-workspace
+
+# Visual Studio Code
+/RadarPrice-frontend/.vscode/*
+/RadarPrice-frontend/!.vscode/settings.json
+/RadarPrice-frontend/!.vscode/tasks.json
+/RadarPrice-frontend/!.vscode/launch.json
+/RadarPrice-frontend/!.vscode/extensions.json
+/RadarPrice-frontend/.history/*
+
+# Miscellaneous
+/RadarPrice-frontend/.angular/cache
+/RadarPrice-frontend/.sass-cache/
+/RadarPrice-frontend/connect.lock
+/RadarPrice-frontend/coverage
+/RadarPrice-frontend/libpeerconnection.log
+/RadarPrice-frontend/testem.log
+/RadarPrice-frontend/typings
+
+# System files
+/RadarPrice-frontend/.DS_Store
+/RadarPrice-frontend/Thumbs.db
