@@ -1,11 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
-
 html,
 body {
     height: 100%;
+    width: 100%;
 }
 
 body {
-    background-color: #1f2029;
+    background-color: #222831;
     margin: 0;
+}
+
+.ng-valid:not(form).ng-touched {
+    border-right: 5px solid #A6FF96;
+}
+
+.ng-invalid:not(form).ng-touched {
+    border-left: 5px solid #C63D2F;
 }

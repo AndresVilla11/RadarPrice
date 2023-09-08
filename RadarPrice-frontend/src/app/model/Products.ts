@@ -1,4 +1,4 @@
-export class Products{
-    productName?: string
-    productPrice?: string
+export interface Products{
+    productName: string
+    productPrice: string
 }

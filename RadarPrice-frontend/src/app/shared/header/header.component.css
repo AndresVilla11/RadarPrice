@@ -8,19 +8,23 @@ a:hover {
     text-decoration: none;
 }
 
-.nav {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
+.navigator {
+    display: flex;
+    flex-direction: row;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 .block-1 {
+    width: 40%;
+    padding-top: 15px;
     padding-left: 5%;
 }
 
 .block-2 {
+    width: 60%;
     padding-top: 25px;
+    align-items: center;
     font-size: 15px;
 }
 
@@ -107,7 +111,7 @@ a:hover {
 
 .checkbox-all:checked+label:after,
 .checkbox-all:not(:checked)+label:after {
-    background-color: #8e44ad;
+    background-color: #E5D283;
 }
 
 .checkbox-alizarin:checked+label:after,
