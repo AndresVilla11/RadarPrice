@@ -1,18 +1,42 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError, BehaviorSubject, tap } from 'rxjs';
 import { UserLoginRequest } from 'src/app/model/UserLoginRequest';
-import { UserLoginResponse } from 'src/app/model/UserLoginResponse';
+import { AuthenticationRs } from 'src/app/model/AuthenticationRs';
+import { UserRegister } from 'src/app/model/UserRegister';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private httpClient: HttpClient) { }
+  baseUrl: string;
 
-  login(credentials: UserLoginRequest): Observable<UserLoginResponse> {
-    return this.httpClient.post<UserLoginResponse>('', '').pipe(
+  currentUserLogin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  currentUserData: BehaviorSubject<AuthenticationRs> = new BehaviorSubject<AuthenticationRs>({ token: '' });
+
+  constructor(private httpClient: HttpClient) {
+    this.baseUrl = 'http://localhost:8080/auth';
+  }
+
+  login(credentials: UserLoginRequest): Observable<AuthenticationRs> {
+    console.log(credentials);
+    return this.httpClient.post<AuthenticationRs>(`${this.baseUrl}/login`, credentials).pipe(
+      tap((userData: AuthenticationRs) => {
+        this.currentUserData.next(userData);
+        this.currentUserLogin.next(true);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  signUp(credentials: UserRegister): Observable<AuthenticationRs> {
+    console.log(credentials);
+    return this.httpClient.post<AuthenticationRs>(`${this.baseUrl}/register`, credentials).pipe(
+      tap((userData: AuthenticationRs) => {
+        this.currentUserData.next(userData);
+        this.currentUserLogin.next(true);
+      }),
       catchError(this.handleError)
     );
   }
@@ -24,5 +48,13 @@ export class LoginService {
       console.error('Error retornado por el back', error.status, error.error);
     }
     return throwError(() => new Error('Algo fallo en el login service'));
+  }
+
+  get userData(): Observable<AuthenticationRs> {
+    return this.currentUserData.asObservable();
+  }
+
+  get userLogin(): Observable<boolean> {
+    return this.currentUserLogin.asObservable();
   }
 }

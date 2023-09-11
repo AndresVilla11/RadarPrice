@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLoginRequest } from 'src/app/model/UserLoginRequest';
+import { UserRegister } from 'src/app/model/UserRegister';
 import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
@@ -22,7 +23,9 @@ export class LoginComponent {
     password: ['', Validators.required]
   })
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) {
+
+  }
 
   login() {
     if (this.loginForm.valid) {
@@ -35,9 +38,9 @@ export class LoginComponent {
         },
         complete: () => {
           console.info("complete");
+          this.router.navigateByUrl('/home');
         }
       });
-      this.router.navigateByUrl('/home');
     } else {
       this.loginForm.markAllAsTouched();
     }
@@ -45,10 +48,20 @@ export class LoginComponent {
 
   signUp() {
     if (this.signUpForm.valid) {
-      console.log("PASO - products");
-      this.router.navigateByUrl('/products');
+      this.loginService.signUp(this.signUpForm.value as UserRegister).subscribe({
+        next: (userData) => {
+          console.log(userData);
+        },
+        error: (errorData) => {
+          console.error(errorData);
+        },
+        complete: () => {
+          console.info("complete");
+          this.router.navigateByUrl('/home');
+        }
+      });
     } else {
-      this.signUpForm.markAllAsTouched();
+      this.loginForm.markAllAsTouched();
     }
   }
 }

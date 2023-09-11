@@ -12,7 +12,7 @@
                                 <div class="center-wrap">
                                     <div class="section text-center">
                                         <h4 class="text-white mb-4 pb-3">Log In</h4>
-                                        <form [formGroup]="loginForm">
+                                        <form [formGroup]="loginForm" (ngSubmit)="login()">
                                             <div class="form-group">
                                                 <input formControlName="email" type="email" name="logemail"
                                                     class="form-style" placeholder="Your Email" id="logemail"
@@ -25,7 +25,7 @@
                                                     autocomplete="off">
                                                 <i class="input-icon uil uil-lock-alt"></i>
                                             </div>
-                                            <a class="btn mt-4" type="submit" (click)="login()">submit</a>
+                                            <input class="btn mt-4" type="submit" value="submit">
                                             <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your
                                                     password?</a></p>
                                         </form>
@@ -36,7 +36,7 @@
                                 <div class="center-wrap">
                                     <div class="section text-center">
                                         <h4 class="text-white pb-3">Sign Up</h4>
-                                        <form [formGroup]="signUpForm">
+                                        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
                                             <div class="form-group">
                                                 <input formControlName="fullName" type="text" name="logname"
                                                     class="form-style" placeholder="Your Full Name" id="logname"
@@ -55,7 +55,7 @@
                                                     autocomplete="off">
                                                 <i class="input-icon uil uil-lock-alt"></i>
                                             </div>
-                                            <a class="btn mt-4" type="submit" (click)="signUp()">submit</a>
+                                            <input class="btn mt-4" type="submit" value="submit">
                                         </form>
                                     </div>
                                 </div>

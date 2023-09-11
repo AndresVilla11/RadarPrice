@@ -40,3 +40,64 @@
 # System files
 /RadarPrice-frontend/.DS_Store
 /RadarPrice-frontend/Thumbs.db
+
+##############################
+## Java
+##############################
+/RadarPrice-Backend/.mtj.tmp/
+/RadarPrice-Backend/*.class
+/RadarPrice-Backend/*.jar
+/RadarPrice-Backend/*.war
+/RadarPrice-Backend/*.ear
+/RadarPrice-Backend/*.nar
+/RadarPrice-Backend/hs_err_pid*
+/RadarPrice-Backend/replay_pid*
+
+##############################
+## Gradle
+##############################
+/RadarPrice-Backend/bin/
+/RadarPrice-Backend/build/
+/RadarPrice-Backend/.gradle
+/RadarPrice-Backend/.gradletasknamecache
+/RadarPrice-Backend/gradle-app.setting
+/RadarPrice-Backend/!gradle-wrapper.jar
+
+##############################
+## IntelliJ
+##############################
+/RadarPrice-Backend/out/
+/RadarPrice-Backend/.idea/
+/RadarPrice-Backend/.idea_modules/
+/RadarPrice-Backend/*.iml
+/RadarPrice-Backend/*.ipr
+/RadarPrice-Backend/*.iws
+
+
+/RadarPrice-Backend/HELP.md
+/RadarPrice-Backend/.gradle
+/RadarPrice-Backend/build/
+/RadarPrice-Backend/!gradle/wrapper/gradle-wrapper.jar
+/RadarPrice-Backend/!**/src/main/**/build/
+/RadarPrice-Backend/!**/src/test/**/build/
+
+### STS ###
+/RadarPrice-Backend/.apt_generated
+/RadarPrice-Backend/.classpath
+/RadarPrice-Backend/.factorypath
+/RadarPrice-Backend/.project
+/RadarPrice-Backend/.settings
+/RadarPrice-Backend/.springBeans
+/RadarPrice-Backend/.sts4-cache
+/RadarPrice-Backend/bin/
+/RadarPrice-Backend/!**/src/main/**/bin/
+/RadarPrice-Backend/!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+/RadarPrice-Backend/.idea
+/RadarPrice-Backend/*.iws
+/RadarPrice-Backend/*.iml
+/RadarPrice-Backend/*.ipr
+/RadarPrice-Backend/out/
+/RadarPrice-Backend/!**/src/main/**/out/
+/RadarPrice-Backend/!**/src/test/**/out/
