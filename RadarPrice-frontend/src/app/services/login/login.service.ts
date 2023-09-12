@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError, BehaviorSubject, tap } from 'rxjs';
+import { Observable, catchError, throwError, BehaviorSubject, tap, map } from 'rxjs';
 import { UserLoginRequest } from 'src/app/model/UserLoginRequest';
 import { AuthenticationRs } from 'src/app/model/AuthenticationRs';
 import { UserRegister } from 'src/app/model/UserRegister';
@@ -20,25 +20,27 @@ export class LoginService {
   }
 
   login(credentials: UserLoginRequest): Observable<AuthenticationRs> {
-    console.log(credentials);
-    return this.httpClient.post<AuthenticationRs>(`${this.baseUrl}/login`, credentials).pipe(
-      tap((userData: AuthenticationRs) => {
-        this.currentUserData.next(userData);
-        this.currentUserLogin.next(true);
-      }),
-      catchError(this.handleError)
-    );
+    return this.httpClient.post<AuthenticationRs>(`${this.baseUrl}/login`, credentials)
+      .pipe(
+        tap((userData: AuthenticationRs) => {
+          console.log(userData)
+          this.currentUserData.next(userData);
+          this.currentUserLogin.next(true);
+        }),
+        catchError(this.handleError)
+      );
   }
 
   signUp(credentials: UserRegister): Observable<AuthenticationRs> {
     console.log(credentials);
-    return this.httpClient.post<AuthenticationRs>(`${this.baseUrl}/register`, credentials).pipe(
-      tap((userData: AuthenticationRs) => {
-        this.currentUserData.next(userData);
-        this.currentUserLogin.next(true);
-      }),
-      catchError(this.handleError)
-    );
+    return this.httpClient.post<AuthenticationRs>(`${this.baseUrl}/register`, credentials)
+      .pipe(
+        tap((userData: AuthenticationRs) => {
+          this.currentUserData.next(userData);
+          this.currentUserLogin.next(true);
+        }),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -56,5 +58,9 @@ export class LoginService {
 
   get userLogin(): Observable<boolean> {
     return this.currentUserLogin.asObservable();
+  }
+
+  get getToken() {
+    return localStorage.getItem('token');
   }
 }

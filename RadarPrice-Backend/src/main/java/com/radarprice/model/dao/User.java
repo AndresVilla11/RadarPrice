@@ -26,7 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_name"})})
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,12 +41,12 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "email", nullable = false)
-    private String email;
-
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Column(name = "user_name", nullable = false)
+    private String userName;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

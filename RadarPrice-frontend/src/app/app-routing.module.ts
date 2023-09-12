@@ -5,20 +5,31 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserComponent } from './pages/user/user.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { userGuard } from './auth/guard/user.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: DashboardComponent },
   {
-    path: 'user', component: UserComponent,
-    children: [
-      {
-        path: 'favorite', component: FavoriteComponent
-      }
-    ]
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
-  { path: 'products', component: ProductsComponent },
-  { path: 'login', component: LoginComponent }
+  {
+    path: 'home',
+    component: DashboardComponent
+  },
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [userGuard]
+  },
+  {
+    path: 'products',
+    component: ProductsComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  }
 ];
 
 @NgModule({

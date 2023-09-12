@@ -14,6 +14,7 @@ import { UserComponent } from './pages/user/user.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

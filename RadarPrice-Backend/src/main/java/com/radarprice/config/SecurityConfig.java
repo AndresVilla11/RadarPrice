@@ -1,6 +1,6 @@
 package com.radarprice.config;
 
-import com.radarprice.jwt.JwtAuthenticationFilter;
+import com.radarprice.config.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

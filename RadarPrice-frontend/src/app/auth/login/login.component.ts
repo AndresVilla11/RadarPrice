@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { UserLoginRequest } from 'src/app/model/UserLoginRequest';
 import { UserRegister } from 'src/app/model/UserRegister';
-import { LoginService } from 'src/app/services/auth/login.service';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,25 +14,28 @@ import { LoginService } from 'src/app/services/auth/login.service';
 export class LoginComponent {
 
   loginForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
+    userName: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   })
 
   signUpForm = this.formBuilder.group({
     fullName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    userName: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   })
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) {
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private loginService: LoginService,
+    private cookieService: CookieService) {
 
   }
 
   login() {
     if (this.loginForm.valid) {
       this.loginService.login(this.loginForm.value as UserLoginRequest).subscribe({
-        next: (userData) => {
-          console.log(userData);
+        next: (loginData) => {
+          this.cookieService.set('token', loginData.token);
         },
         error: (errorData) => {
           console.error(errorData);
