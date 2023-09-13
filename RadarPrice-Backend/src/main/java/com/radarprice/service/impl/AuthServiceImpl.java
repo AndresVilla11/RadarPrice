@@ -48,4 +48,9 @@ public class AuthServiceImpl implements AuthService {
                 .token(jwtService.getToken(user))
                 .build();
     }
+
+    @Override
+    public void logout(UserRegisterRequest userRegisterRequest) {
+
+    }
 }

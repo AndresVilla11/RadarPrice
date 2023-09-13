@@ -32,4 +32,10 @@ public class AuthController {
     private AuthResponse register(@RequestBody UserRegisterRequest userRegisterRequest) {
         return authService.register(userRegisterRequest);
     }
+
+    @PostMapping(value = "/logout")
+    @ResponseStatus(HttpStatus.CREATED)
+    private void logout(@RequestBody UserRegisterRequest userRegisterRequest) {
+        authService.logout(userRegisterRequest);
+    }
 }
