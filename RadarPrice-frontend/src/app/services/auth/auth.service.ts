@@ -6,11 +6,9 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AuthService {
 
-  constructor(public cookieService: CookieService) { }
+  constructor(private cookieService: CookieService) { }
 
   public isAuthenticated(): boolean {
-    const token = this.cookieService.check('token');
-    console.log(token);
-    return token;
+    return this.cookieService.check('token');
   }
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { UserLoginRequest } from 'src/app/model/UserLoginRequest';
 import { UserRegister } from 'src/app/model/UserRegister';
 import { LoginService } from 'src/app/services/login/login.service';
@@ -26,8 +25,7 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private loginService: LoginService,
-    private cookieService: CookieService) {
+    private loginService: LoginService) {
 
   }
 
@@ -35,14 +33,13 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.loginService.login(this.loginForm.value as UserLoginRequest).subscribe({
         next: (loginData) => {
-          this.cookieService.set('token', loginData.token);
         },
         error: (errorData) => {
           console.error(errorData);
         },
         complete: () => {
           console.info("complete");
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/user');
         }
       });
     } else {
@@ -68,4 +65,5 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
     }
   }
+
 }

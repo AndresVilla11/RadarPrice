@@ -17,6 +17,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Objects;
 
 @Component
@@ -29,7 +31,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         final String token = getTokenFromRequest(request);
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
         if (token == null) {
             filterChain.doFilter(request, response);

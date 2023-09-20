@@ -4,7 +4,7 @@
             <div class="pos-f-t">
                 <div class="collapse" id="navbarToggleExternalContent">
                     <div data-target="#navbarToggleExternalContent" data-toggle="collapse"
-                        *ngIf="!userLoginOn; else userLogout" class="pt-1 pl-3 pb-1">
+                        *ngIf="!isLoggin(); else userLogout" class="pt-1 pl-3 pb-1">
                         <a routerLink="/login" class="text-white h5">Login</a>
                     </div>
                     <ng-template #userLogout class="pt-3 pl-3 pb-1">
@@ -12,10 +12,10 @@
                             <a routerLink="/user" class="text-white h5">User</a>
                         </div>
                         <div>
-                            <a routerLink="/user/favorite" class="text-white h5">Favorite</a>
+                            <a routerLink="/favorite" class="text-white h5">Favorite</a>
                         </div>
                         <div>
-                            <a routerLink="/logout" class="text-white h5">Log out</a>
+                            <a (click)="logout()" class="text-white h5">Log out</a>
                         </div>
                     </ng-template>
                 </div>

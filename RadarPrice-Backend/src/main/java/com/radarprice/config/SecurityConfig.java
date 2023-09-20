@@ -24,8 +24,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
+                .httpBasic(withDefaults())
+                .cors(withDefaults())
                 .authorizeHttpRequests(authRequest -> {
                     authRequest
                             .requestMatchers("/auth/**").permitAll()
@@ -36,7 +39,6 @@ public class SecurityConfig {
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin(withDefaults())
                 .build();
     }
 }

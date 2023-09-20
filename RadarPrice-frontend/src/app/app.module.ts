@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterComponent } from './auth/register/register.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
@@ -20,7 +19,6 @@ import { CookieService } from 'ngx-cookie-service';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
