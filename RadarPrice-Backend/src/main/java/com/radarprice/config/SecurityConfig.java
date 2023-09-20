@@ -24,15 +24,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(withDefaults())
                 .cors(withDefaults())
                 .authorizeHttpRequests(authRequest -> {
                     authRequest
-                            .requestMatchers("/auth/**").permitAll()
-                            .anyRequest().authenticated();
+                            .requestMatchers("/auth/**").permitAll();
                 })
                 .sessionManagement(sessionManager ->
                         sessionManager

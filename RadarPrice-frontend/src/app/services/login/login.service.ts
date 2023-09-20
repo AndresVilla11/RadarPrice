@@ -19,6 +19,7 @@ export class LoginService {
     this.baseUrl = 'http://localhost:8080/auth';
   }
 
+  
   login(credentials: UserLoginRequest): Observable<AuthenticationRs> {
     return this.httpClient.post<AuthenticationRs>(`${this.baseUrl}/login`, credentials)
       .pipe(

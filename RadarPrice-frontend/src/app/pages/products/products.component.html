@@ -1,1 +1,26 @@
-<p>products works!</p>
+<section class="content">
+    <div class="counter" id="counter">
+        <div class="row">
+            <div class="item" (click)="selectProduct(product)" *ngFor="let product of products; let i= index">
+                <div class="contenedor-foto">
+                    <img src="" alt="">
+                </div>
+                <p class="descripcion">{{ product.productName }}</p>
+                <span class="precio">{{ product.productPrice }}</span>
+            </div>
+        </div>
+    </div>
+    <mat-card class="card" id="card" *ngIf="selectedProduct">
+        <img src="" alt="" style="width:100%">
+        <div>
+            <div class="body-container">
+                <h4 class="p-l-4"><b>{{ cardProduct.productName }}</b></h4>
+                <p>{{ cardProduct.productPrice }}</p>
+            </div>
+            <mat-card-actions>
+                <button mat-button (click)="addProduct(cardProduct)">Agregar</button>
+                <button mat-button (click)="closeCard()">Cerrar</button>
+            </mat-card-actions>
+        </div>
+    </mat-card>
+</section>

@@ -8,13 +8,13 @@
                         <a routerLink="/login" class="text-white h5">Login</a>
                     </div>
                     <ng-template #userLogout class="pt-3 pl-3 pb-1">
-                        <div>
+                        <div data-target="#navbarToggleExternalContent" data-toggle="collapse">
                             <a routerLink="/user" class="text-white h5">User</a>
                         </div>
-                        <div>
+                        <div data-target="#navbarToggleExternalContent" data-toggle="collapse">
                             <a routerLink="/favorite" class="text-white h5">Favorite</a>
                         </div>
-                        <div>
+                        <div data-target="#navbarToggleExternalContent" data-toggle="collapse">
                             <a (click)="logout()" class="text-white h5">Log out</a>
                         </div>
                     </ng-template>

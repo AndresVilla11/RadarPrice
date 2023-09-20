@@ -5,6 +5,7 @@ body {
 }
 
 body {
+    color: azure;
     background-color: #222831;
     margin: 0;
 }
@@ -16,3 +17,5 @@ body {
 .ng-invalid:not(form).ng-touched {
     border-left: 5px solid #C63D2F;
 }
+html, body { height: 100%; }
+html, body, button { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

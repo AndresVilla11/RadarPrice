@@ -23,13 +23,11 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.loginService.logout().subscribe({
       next: () => {
-        console.log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
       },
       error: (errorData) => {
         console.error(errorData);
       },
       complete: () => {
-        console.info("complete");
         this.router.navigateByUrl('/home');
       }
     });
