@@ -1,5 +1,6 @@
 package com.radarprice.model.dao;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,8 +22,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "products", uniqueConstraints = {@UniqueConstraint(columnNames = {"ean"})})
+public class ProductDao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +35,9 @@ public class Product {
     @Column(name = "product_price")
     private String productPrice;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+    @Column(name = "ean")
+    private String ean;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade = CascadeType.ALL)
     private Set<ProductByUser> productByUserSet;
 }

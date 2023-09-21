@@ -32,6 +32,7 @@ export class LoginService {
   }
 
   signUp(credentials: UserRegister): Observable<AuthenticationRs> {
+    console.log(credentials);
     return this.httpClient.post<AuthenticationRs>(`${this.baseUrl}/register`, credentials)
       .pipe(
         tap((userData: AuthenticationRs) => {

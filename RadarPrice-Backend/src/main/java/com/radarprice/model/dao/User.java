@@ -1,6 +1,7 @@
 package com.radarprice.model.dao;
 
 import com.radarprice.model.auth.Role;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -29,7 +30,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_name"})})
+@Table(name = "\"user\"", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_name"})})
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +50,9 @@ public class User implements UserDetails {
     private Role role;
 
     @Column(name = "user_name", nullable = false)
-    private String userName;
+    private String username;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     private Set<ProductByUser> productByUserSet;
 
     @Override
@@ -61,7 +62,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return this.username;
     }
 
     @Override

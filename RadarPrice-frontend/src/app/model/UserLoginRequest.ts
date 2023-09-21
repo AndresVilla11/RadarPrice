@@ -1,7 +1,7 @@
 import { Products } from "./Products"
 
 export interface UserLoginRequest{
-    email: string,
+    username: string,
     password: string,
     userProducts: Array<Products>
 }

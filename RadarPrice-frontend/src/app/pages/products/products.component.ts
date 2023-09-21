@@ -12,16 +12,18 @@ export class ProductsComponent implements OnInit {
 
   selectedProduct: boolean = false;
   cardProduct!: Products;
-  products: Products[] = [{
-    productName: 'HUEVO',
-    productPrice: '$ 15.000'
-  }, {
-    productName: 'LECHE',
-    productPrice: '$ 45.000'
-  }
-  ];
+  products: Products[] = [];
 
   constructor(private productService: ProductService, private router: Router) {
+    this.productService.getProducts().subscribe({
+      next: (productData) => {
+        this.products = productData;
+      },
+      error: (errorData) => {
+        console.error(errorData);
+        this.router.navigateByUrl('/login')
+      }
+    })
   }
 
   ngOnInit(): void { }

@@ -51,11 +51,11 @@ public class JwtServiceImpl implements JwtService {
     }
 
     private Claims getAllClaims(String token) {
-        return Jwts
+        return (Claims) Jwts
                 .parserBuilder()
                 .setSigningKey(getKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parse(token)
                 .getBody();
     }
 

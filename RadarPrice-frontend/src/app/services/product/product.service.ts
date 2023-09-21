@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, tap, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Products } from 'src/app/model/Products';
 
 @Injectable({
@@ -12,6 +12,13 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {
     this.baseUrl = 'http://localhost:8080';
+  }
+
+  getProducts(): Observable<Products[]> {
+    return this.httpClient.get<Products[]>(`${this.baseUrl}` + '/product')
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   addProductToUser(addProduct: Products) {

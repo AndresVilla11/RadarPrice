@@ -11,7 +11,6 @@ import com.radarprice.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponse login(UserLoginRequest userLoginRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLoginRequest.getUserName(), userLoginRequest.getPassword()));
-        UserDetails userDetails = userRepository.findByUserName(userLoginRequest.getUserName()).orElseThrow();
+        User userDetails = userRepository.findByUsername(userLoginRequest.getUserName()).orElseThrow();
         final String token = jwtService.getToken(userDetails);
         return AuthResponse.builder()
                 .token(token)
@@ -39,13 +38,13 @@ public class AuthServiceImpl implements AuthService {
                 .firstName(userRegisterRequest.getFullName())
                 .lastName("")
                 .password(BCrypt.hashpw(userRegisterRequest.getPassword(), BCrypt.gensalt()))
-                .userName(userRegisterRequest.getUserName())
+                .username(userRegisterRequest.getUserName())
                 .role(Role.USER)
                 .build();
-        userRepository.save(user);
+        User userSaved = userRepository.save(user);
 
         return AuthResponse.builder()
-                .token(jwtService.getToken(user))
+                .token(jwtService.getToken(userSaved))
                 .build();
     }
 }
